@@ -123,8 +123,7 @@ public abstract class Soldier extends Unit{
         return map[getPositionX() + NUMBER][getPositionY()] == 'y';
     }
 
-    public Soldier newObject(){
-    }
+    public abstract Soldier newObject();
 
 
 }
