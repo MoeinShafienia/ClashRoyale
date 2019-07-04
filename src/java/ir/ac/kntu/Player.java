@@ -1,10 +1,11 @@
 package ir.ac.kntu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class Player {
+public class Player implements Serializable {
 
     private String name;
     private int health;
