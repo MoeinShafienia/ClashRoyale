@@ -1,5 +1,6 @@
+package ir.ac.kntu;
+
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -19,11 +20,11 @@ public class Main extends Application {
         Scene scene4 = card1.createScene("Player 1 Choose 4 Cards:");
         Scene scene5 = card2.createScene("Player 2 Choose 4 Cards:");
         //add styles
-        scene1.getStylesheets().add("Viper.css");
-        scene2.getStylesheets().add("Viper.css");
-        scene3.getStylesheets().add("Viper.css");
-        scene4.getStylesheets().add("Viper.css");
-        scene5.getStylesheets().add("Viper.css");
+        scene1.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
+        scene2.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
+        scene3.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
+        scene4.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
+        scene5.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         //primary scene
         primaryStage.setScene(scene1);
         //handle buttons

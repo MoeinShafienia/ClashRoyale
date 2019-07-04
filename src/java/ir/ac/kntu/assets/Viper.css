@@ -60,26 +60,34 @@
 }
 
 .card-select-archer {
-    -fx-graphic: url('assets/archer.png');
+    -fx-graphic: url('archer.png');
 }
 .card-select-swordsman {
-    -fx-graphic: url('assets/swordsman.jpg');
+    -fx-graphic: url('swordsman.jpg');
 }
 .card-select-shield {
-    -fx-graphic: url('assets/shield.png');
+    -fx-graphic: url('shield.png');
 }
 .card-select-dragon {
-    -fx-graphic: url('assets/dragon.png');
+    -fx-graphic: url('dragon.png');
 }
 .card-select-goblin {
-    -fx-graphic: url('assets/goblin.jpg');
+    -fx-graphic: url('goblin.jpg');
 }
 .card-select-knight {
-    -fx-graphic: url('assets/knight.jpg');
+    -fx-graphic: url('knight.jpg');
 }
 
 .card-picker-image {
-    -fx-background-image: url("assets/JVl4jt.jpg");
+    -fx-background-image: url("JVl4jt.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 1250 800;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.background-image {
+    -fx-background-image: url("picture.jpg");
     -fx-background-repeat: stretch;   
     -fx-background-size: 1250 800;
     -fx-background-position: center center;
