@@ -1,3 +1,5 @@
+package ir.ac.kntu;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -34,11 +33,11 @@ public class MainMenu {
         root = new HBox(10);
         leftPane = new VBox(10);
         rightPane = new VBox(10);
-        root.setTranslateX(Constants.WIDTH/2 -140);
+        root.setTranslateX(Constants.WIDTH/2 -120);
         root.setTranslateY(Constants.HEIGHT/3 -50);
         leftPane.setAlignment(Pos.CENTER_RIGHT);
         rightPane.setAlignment(Pos.CENTER_LEFT);
-        pane.getStyleClass().add("card-picker-image");
+        pane.getStyleClass().add("background-image");
         buttons = new ArrayList<>();
     }
     public Scene createScene() {

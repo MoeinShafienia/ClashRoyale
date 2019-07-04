@@ -1,17 +1,15 @@
+package ir.ac.kntu;
+
 import java.util.ArrayList;
 
 import javafx.beans.binding.BooleanBinding;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class CardPickMenu{
