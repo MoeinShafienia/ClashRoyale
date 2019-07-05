@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Map {
 
     private static String[] processMap() {
-        String[] gameMap = new String[20];
+        String[] gameMap = new String[22];
         try {
             File myObj = new File("C:\\Users\\Moein\\Desktop\\LastProject\\src\\ir\\ac\\kntu\\assets\\DefaultMap");
             Scanner myReader = new Scanner(myObj);
@@ -25,18 +25,18 @@ public class Map {
                 i++;
             }
             myReader.close();
-            } catch (FileNotFoundException e) {
-                System.out.println("An error occurred.");
-                e.printStackTrace();
-            }  
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         return gameMap;
     }
 
     public static char[][] readMap() {
         String[] map = processMap();
-        char[][] mainMap = new char[20][20];
-        for(int i = 0; i < 20; i++) {
-            for(int j = 0; j < 20; j++) {
+        char[][] mainMap = new char[22][22];
+        for (int i = 0; i < 22; i++) {
+            for (int j = 0; j < 22; j++) {
                 mainMap[i][j] = map[i].charAt(j);
             }
         }
@@ -45,19 +45,19 @@ public class Map {
 
     public static void printMap() {
         char[][] map = readMap();
-        for(int i = 0; i < 20; i++) {
-            for(int j = 0; j < 20; j++) {
+        for (int i = 0; i < 22; i++) {
+            for (int j = 0; j < 22; j++) {
                 System.out.print(map[i][j]);
             }
             System.out.print("\n");
-        } 
+        }
     }
 
     public static Pane drawMap(char[][] colors) {
         Pane pane = new Pane();
         pane.setTranslateX(65);
-        for (int i = 0; i < 800; i += 40) {
-            for (int j = 0; j < 800; j += 40) {
+        for (int i = 0; i < 880; i += 40) {
+            for (int j = 0; j < 880; j += 40) {
                 Rectangle rectangle = new Rectangle(j, i, 40, 40);
                 setColor(rectangle, colors, i, j);
                 rectangle.setStroke(Color.BLACK);
@@ -68,7 +68,7 @@ public class Map {
     }
 
     public static void setColor(Rectangle rectangle, char[][] colors, int i,
-                            int j) {
+                                int j) {
         char color = colors[i / 40][j / 40];
         switch (color) {
             case 'r':

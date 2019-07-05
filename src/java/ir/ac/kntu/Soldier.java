@@ -59,9 +59,9 @@ public abstract class Soldier extends Unit{
         char[][] map = Map.getMap();
 
         if (getPlayer().getPlayerId() == 1) {
-            NUMBER = 1;
+            NUMBER = -40;
         } else {
-            NUMBER = -1;
+            NUMBER = +40;
         }
 
         if (speed == 0) {
@@ -69,6 +69,7 @@ public abstract class Soldier extends Unit{
         }
         if (canMoveUp(NUMBER, map)) {
             setPositionY(getPositionY() + NUMBER);
+            System.out.println("move up" + NUMBER);
             lastMove = "nothing";
             move(speed - 1, lastMove);
         } else {
@@ -79,21 +80,23 @@ public abstract class Soldier extends Unit{
 
     public String moveHorizontal(String lastMove, char[][] map) {
         if (lastMove.equals("right")) {
-            if(map[getPositionX()][getPositionY() + 1] == 'y') {
-                if(enemyInfront(1)){
+            if(map[getPositionX()/40][getPositionY()/40 + 1] == 'y') {
+                if(enemyInfront(40)){
                     return "right";
-                }else if(teamateInfront(1)){
-                    setPositionX(getPositionX() +1);
+                }else if(teamateInfront(40)){
+                    setPositionX(getPositionX() +40);
+                    System.out.println("not moving up");
                     return "right";
                 }
             }
             return "right";
         } else if (lastMove.equals("left")) {
-            if(map[getPositionX()][getPositionY() - 1] == 'y') {
-                if(enemyInfront(-1)){
+            if(map[getPositionX()/40][getPositionY()/40 - 1] == 'y') {
+                if(enemyInfront(-40)){
                     return "left";
-                }else if(teamateInfront(-1)){
-                    setPositionX(getPositionX() -1);
+                }else if(teamateInfront(-40)){
+                    setPositionX(getPositionX() -40);
+                    System.out.println("not moving up");
                     return "left";
                 }
             }
@@ -103,22 +106,26 @@ public abstract class Soldier extends Unit{
             if (movementNumbers > 1) {
                 int randomNumber = RandomHelper.nextInt(2);
                 if (randomNumber == 1) {
-                    setPositionX(getPositionX() + 1);
+                    setPositionX(getPositionX() + 40);
+                    System.out.println("not moving up");
                     return "right";
                 } else {
-                    setPositionX(getPositionX() - 1);
+                    setPositionX(getPositionX() - 40);
+                    System.out.println("not moving up");
                     return "left";
                 }
             } else {
-                if (map[getPositionX() + 1][getPositionY()] == 'y') {
-                    if(!enemyInfront(1)){
-                        if(teamateInfront(1)){
-                            setPositionX(getPositionX() + 1);
+                if (map[getPositionX()/40 + 1][getPositionY()/40] == 'y') {
+                    if(!enemyInfront(40)){
+                        if(teamateInfront(40)){
+                            setPositionX(getPositionX() + 40);
+                            System.out.println("not moving up");
                             return "right";
                         }
                     }
                 }else{
-                    setPositionX(getPositionX() - 1);
+                    setPositionX(getPositionX() - 40);
+                    System.out.println("not moving up");
                     return "left";
                 }
             }
@@ -128,16 +135,16 @@ public abstract class Soldier extends Unit{
 
     public int movementNumber(char[][] map) {
         int movementNumbers = 0;
-        if (map[getPositionX() + 1][getPositionY()] == 'y') {
-            if(!enemyInfront(1)){
-                if(teamateInfront(1)){
+        if (map[getPositionX()/40 + 1][getPositionY()/40] == 'y') {
+            if(!enemyInfront(40)){
+                if(teamateInfront(40)){
                     movementNumbers++;
                 }
             }
         }
-        if (map[getPositionX() - 1][getPositionY()] == 'y') {
-            if(!enemyInfront(-1)){
-                if(teamateInfront(-1)){
+        if (map[getPositionX()/40 - 1][getPositionY()/40] == 'y') {
+            if(!enemyInfront(-40)){
+                if(teamateInfront(-40)){
                     movementNumbers++;
                 }
             }
@@ -147,7 +154,7 @@ public abstract class Soldier extends Unit{
 
     public boolean canMoveUp(int NUMBER, char[][] map) {
 
-        if(map[getPositionY() + NUMBER][getPositionY()] == 'y') {
+        if(map[getPositionX()/40 ][getPositionY()/40+ NUMBER/40] == 'y') {
             //enemy in front
             for (Player player : Player.getPlayers()) {
                 if (!this.getPlayer().equals(player)) {

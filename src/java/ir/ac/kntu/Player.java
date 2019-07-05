@@ -22,6 +22,7 @@ public class Player implements Serializable {
         soldiers = new ArrayList<>();
         towers = new ArrayList<>();
         selectedSoldiers = new ArrayList<>();
+        units = new ArrayList<>();
     }
 
     public static void handleMana() {
@@ -31,6 +32,7 @@ public class Player implements Serializable {
 
     public void setTowers(List<Tower> towers) {
         this.towers = towers;
+        units.addAll(towers);
     }
 
     public List<Soldier> getSoldiers() {
@@ -114,7 +116,9 @@ public class Player implements Serializable {
 
 
     public void spawn(Soldier soldier) {
+        soldier.setPlayer(this);
         soldiers.add(soldier);
+        units.add(soldier);
         chooseSpawnLocation(soldier, this);
         GamePlayMenu.spawn(soldier);
     }
@@ -124,14 +128,15 @@ public class Player implements Serializable {
         char[][] map = Map.readMap();
         final int J;
         if (Player.getPlayer(1).equals(player)) {
-            J = 19;
+            J = 20;
         } else {
-            J = 0;
+            J = 1;
         }
 
-        for (int i = 0; i < 20; i++) {
-            if (map[i][J] == 'r') {
-                spawnLocation.add(new Position(i, J));
+        for (int i = 1; i <= 20; i++) {
+            if (map[J][i] == 'r') {
+                System.out.println("ha");
+                spawnLocation.add(new Position(i*40, J*40));
             }
         }
 

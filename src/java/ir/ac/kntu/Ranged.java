@@ -16,8 +16,10 @@ public abstract class Ranged extends Soldier {
                 
             }
         }
-        int randomNumber = RandomHelper.nextInt(targets.size());
-        targets.get(randomNumber).reduceHealth(getDamage());
+        if (targets.size() != 0) {
+            int randomNumber = RandomHelper.nextInt(targets.size());
+            targets.get(randomNumber).reduceHealth(getDamage());
+        }
     }
 }
 
