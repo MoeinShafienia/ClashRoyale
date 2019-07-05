@@ -15,17 +15,33 @@ public class Player implements Serializable {
 
     private List<Soldier> soldiers;
     private List<Tower> towers;
+
+    public void setTowers(List<Tower> towers) {
+        this.towers = towers;
+    }
+
     private List<Unit> units;
     private static List<Player> players = new ArrayList<>();
 
-    public Player(String name) {
-        this.name = name;
+    public Player() {
         soldiers = new ArrayList<>();
         towers = new ArrayList<>();
+        selectedSoldiers = new ArrayList<>();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
     }
 
     public ArrayList<Soldier> getSelectedSoldiers() {
         return selectedSoldiers;
+    }
+
+    public void setSelectedSoldiers(ArrayList<Soldier> selecteSoldiers) {
+        this.selectedSoldiers = selecteSoldiers;
     }
 
     public int getPlayerId() {
