@@ -15,11 +15,6 @@ public class Player implements Serializable {
 
     private List<Soldier> soldiers;
     private List<Tower> towers;
-
-    public void setTowers(List<Tower> towers) {
-        this.towers = towers;
-    }
-
     private List<Unit> units;
     private static List<Player> players = new ArrayList<>();
 
@@ -29,9 +24,47 @@ public class Player implements Serializable {
         selectedSoldiers = new ArrayList<>();
     }
 
+    public static void handleMana() {
+        players.get(0).setMana(players.get(0).getMana() + 2);
+        players.get(1).setMana(players.get(1).getMana() + 2);
+    }
+
+    public void setTowers(List<Tower> towers) {
+        this.towers = towers;
+    }
+
+    public List<Soldier> getSoldiers() {
+        return soldiers;
+    }
+
+    public List<Tower> getTowers() {
+        return towers;
+    }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }
@@ -47,6 +80,7 @@ public class Player implements Serializable {
     public int getPlayerId() {
         return playerId;
     }
+
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }
@@ -56,8 +90,8 @@ public class Player implements Serializable {
     }
 
     public static boolean isGameOver() {
-        for(Player player : players){
-            if(player.getHealth() <= 0){
+        for (Player player : players) {
+            if (player.getHealth() <= 0) {
                 return true;
             }
         }
@@ -65,21 +99,7 @@ public class Player implements Serializable {
     }
 
     public static Player getPlayer(int i) {
-        return players.get(i-1);
-    }
-
-
-    public int getHealth() {
-        return health;
-    }
-    public void setHealth(int health) {
-        this.health = health;
-    }
-    public int getMana() {
-        return mana;
-    }
-    public void setMana(int mana) {
-        this.mana = mana;
+        return players.get(i - 1);
     }
 
     public static void removeUnit(Unit unit) {
@@ -87,25 +107,38 @@ public class Player implements Serializable {
     }
 
     public static void increaseMana() {
-        for(Player player : players){
+        for (Player player : players) {
             player.setMana(player.getMana() + 2);
         }
     }
 
 
-    public List<Soldier> getSoldiers() {
-        return soldiers;
-    }
-    public List<Tower> getTowers(){
-        return towers;
-    }
-    public List<Unit> getUnits(){
-        return units;
+    public void spawn(Soldier soldier) {
+        soldiers.add(soldier);
+        chooseSpawnLocation(soldier, this);
+        GamePlayMenu.spawn(soldier);
     }
 
-    public void spawn(Soldier soldier){
-        soldiers.add(soldier);
-        //graphic notify
+    private void chooseSpawnLocation(Soldier soldier, Player player) {
+        List<Position> spawnLocation = new ArrayList<>();
+        char[][] map = Map.readMap();
+        final int J;
+        if (Player.getPlayer(1).equals(player)) {
+            J = 19;
+        } else {
+            J = 0;
+        }
+
+        for (int i = 0; i < 20; i++) {
+            if (map[i][J] == 'r') {
+                spawnLocation.add(new Position(i, J));
+            }
+        }
+
+        int randomNumber = RandomHelper.nextInt(spawnLocation.size());
+        soldier.setPositionX(spawnLocation.get(randomNumber).getX());
+        soldier.setPositionY(spawnLocation.get(randomNumber).getY());
+
     }
 
 }

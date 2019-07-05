@@ -31,11 +31,16 @@ public abstract class Soldier extends Unit{
     }
 
     public boolean isSoldierAtHisBase() {
-        if (this.getPlayer().getPlayerId() == 1 && this.getPositionX() > 10) {
-            return true;
-        }
-        if (this.getPlayer().getPlayerId() == 2 && this.getPositionX() <= 10) {
-            return true;
+        try {
+            if (this.getPlayer().getPlayerId() == 1 && this.getPositionX() > 10) {
+                return true;
+            }
+            if (this.getPlayer().getPlayerId() == 2 && this.getPositionX() <= 10) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }

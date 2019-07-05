@@ -19,7 +19,7 @@ import javafx.scene.shape.Rectangle;
 public class GamePlayMenu {
     private static Scene scene;
     private BorderPane root;
-    private Pane pane;
+    private static Pane pane;
     private VBox topChart,bottomChart;
     private HBox topUnits,bottomUnits,topKeys,bottomKeys;
 
@@ -115,21 +115,21 @@ public class GamePlayMenu {
     public void handleKeyPressed(Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
             if(key.getCode() == KeyCode.A) {
-                Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0));
+                Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.S) {
-                Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1));
+                Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.D) {
-                Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2));
+                Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.F) {
-                Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3));
+                Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
             } else if (key.getCode() == KeyCode.H) {
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0));
+                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.J) {
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1));
+                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.K) {
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2));
+                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.L) {
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3));
+                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
             }
         });
     }
@@ -142,14 +142,14 @@ public class GamePlayMenu {
         scene = scene1;
     }
 
-    public void spawn(Unit unit) {
+    public static void spawn(Unit unit) {
         ImageView image = new ImageView(new Image(unit.getUnitImageURL()));
         image.setTranslateX(unit.getPositionX());
         image.setTranslateY(unit.getPositionY());
         pane.getChildren().add(image);
     }
 
-    public void update(int x, int y, Unit unit) {
+    public static void update(int x, int y, Unit unit) {
         Rectangle rectangle = new Rectangle(x, y, 40, 40);
         rectangle.setFill(Color.YELLOW);
         rectangle.setStroke(Color.BLACK);
@@ -157,7 +157,7 @@ public class GamePlayMenu {
         spawn(unit);
     }
 
-    public void remove(Unit unit) {
+    public static void remove(Unit unit) {
         Rectangle rectangle = new Rectangle(unit.getPositionX(), unit.getPositionY(), 40, 40);
         rectangle.setFill(Color.YELLOW);
         rectangle.setStroke(Color.BLACK);

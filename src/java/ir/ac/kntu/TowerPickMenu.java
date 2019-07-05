@@ -102,6 +102,8 @@ public class TowerPickMenu {
             Scene scene6 = game.createScene();
             scene6.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
             stage.setScene(scene6);
+            //starting the game
+            Map.startgame();
         });
     }
 }

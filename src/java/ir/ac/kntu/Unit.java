@@ -54,13 +54,17 @@ public abstract class Unit {
         return positionX;
     }
     public void setPositionX(int positionX) {
+        int previosX = this.getPositionX();
         this.positionX = positionX;
+        GamePlayMenu.update(positionX,getPositionY(),this);
     }
     public int getPositionY() {
         return positionY;
     }
     public void setPositionY(int positionY) {
+        int previosY = this.getPositionY();
         this.positionY = positionY;
+        GamePlayMenu.update(getPositionX(),previosY,this);
     }
     public Player getPlayer() {
         return player;
@@ -94,6 +98,7 @@ public abstract class Unit {
         setHealth(getHealth()-damage);
         if(getHealth() <= 0){
             Player.removeUnit(this);
+            GamePlayMenu.remove(this);
         }
     }
 

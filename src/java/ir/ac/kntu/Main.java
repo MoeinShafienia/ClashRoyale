@@ -11,10 +11,12 @@ public class Main extends Application {
         Player player1 = new Player();
         player1.setHealth(3);
         player1.setMana(100);
+        player1.setPlayerId(1);
         Player.getPlayers().add(player1);
         Player player2 = new Player();
         player2.setHealth(3);
         player2.setMana(100);
+        player1.setPlayerId(2);
         Player.getPlayers().add(player2);
 
 
@@ -55,8 +57,6 @@ public class Main extends Application {
         scene4.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         scene5.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
 
-
-        
        
 
         primaryStage.show();
