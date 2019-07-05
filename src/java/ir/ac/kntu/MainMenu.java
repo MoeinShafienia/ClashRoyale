@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MainMenu {
+    private static Scene scene;
     private Pane pane;
     private HBox root;
     private VBox leftPane;
@@ -56,7 +57,7 @@ public class MainMenu {
 
         pane.getChildren().add(root);
         startAnimation();
-        Scene scene = new Scene(pane,Constants.WIDTH,Constants.HEIGHT);
+        scene = new Scene(pane,Constants.WIDTH,Constants.HEIGHT);
 
         return scene;
     }
@@ -108,7 +109,15 @@ public class MainMenu {
         buttons.get(4).setOnAction(e -> {
             Platform.exit();
         });
+        buttons.get(2).setOnAction(e -> {
+            LoadMenu menu = new LoadMenu();
+            stage.setScene(menu.createScene(stage));
+        });
 
+    }
+
+    public static Scene getScene() {
+        return scene;
     }
 
 }

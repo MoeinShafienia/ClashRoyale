@@ -9,6 +9,7 @@ public class Shield extends Melee {
         setSpeed(1);
         setRange(1);
         setImage("card-select-shield");
+        setUnitImageURL("ir/ac/kntu/assets/shield_icon.png");
     }
 
     @Override

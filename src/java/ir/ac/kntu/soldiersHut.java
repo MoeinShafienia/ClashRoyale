@@ -10,6 +10,7 @@ public class soldiersHut extends Unit implements Runnable {
         this.cycle = 0;
         this.player = player;
         this.targetPlayer = targetPlayer;
+        setUnitImageURL("ir/ac/kntu/assets/soldiers_maker_icon.png");
     }
 
     @Override

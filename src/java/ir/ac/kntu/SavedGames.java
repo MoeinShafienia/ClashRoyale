@@ -19,6 +19,10 @@ public class SavedGames {
         this.player2 = player2;
     }
 
+    public static ArrayList<SavedGames> getSavedGamesList() {
+        return savedGamesList;
+    }
+
     public static SavedGames load(int numberOfGame){
         try {
 
