@@ -15,6 +15,11 @@ public class Player implements Serializable {
 
     private List<Soldier> soldiers;
     private List<Tower> towers;
+
+    public void setTowers(List<Tower> towers) {
+        this.towers = towers;
+    }
+
     private List<Unit> units;
     private static List<Player> players = new ArrayList<>();
 
