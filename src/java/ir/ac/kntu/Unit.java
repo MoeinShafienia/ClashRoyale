@@ -10,8 +10,22 @@ public abstract class Unit {
     private int range;
     private int positionX;
     private int positionY;
+    private String image;
+    private String unitImageURL;
     private Player player;
 
+    public String getUnitImageURL() {
+        return unitImageURL;
+    }
+    public void setUnitImageURL(String url) {
+        unitImageURL = url;
+    }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
     public int getRequiredMana() {
         return requiredMana;
     }

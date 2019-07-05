@@ -195,4 +195,5 @@ public abstract class Soldier extends Unit{
 
     public abstract Soldier newObject();
 
+
 }

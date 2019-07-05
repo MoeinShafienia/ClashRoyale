@@ -8,6 +8,8 @@ public class Goblin extends Melee {
         setDamage(250);
         setSpeed(3);
         setRange(1);
+        setImage("card-select-goblin");
+        setUnitImageURL("ir/ac/kntu/assets/goblin_icon.png");
     }
 
     @Override

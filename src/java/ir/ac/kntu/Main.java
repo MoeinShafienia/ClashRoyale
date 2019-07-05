@@ -8,6 +8,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Player player1 = new Player();
+        player1.setHealth(3);
+        player1.setMana(100);
+        Player.getPlayers().add(player1);
+        Player player2 = new Player();
+        player2.setHealth(3);
+        player2.setMana(100);
+        Player.getPlayers().add(player2);
+
+
         MainMenu mainMenu = new MainMenu();
         PlayerNameMenu pMenu = new PlayerNameMenu();
         PlayerNameMenu qMenu = new PlayerNameMenu();
@@ -25,23 +35,29 @@ public class Main extends Application {
         Scene towerScene1 = towerPickMenu1.createScene();
         Scene towerScene2 = towerPickMenu2.createScene();
 
+        //primary scene
+        primaryStage.setScene(scene1);
+        //handle buttons
+        mainMenu.buttonHandler(primaryStage, scene2);
+        pMenu.buttonHandler(primaryStage,scene3,1);
+        qMenu.buttonHandler(primaryStage, scene4,2);
+        card1.buttonHandler(primaryStage, scene5,1);
+        card2.buttonHandler(primaryStage,towerScene1,2);
+        towerPickMenu1.buttonHandler(primaryStage,towerScene2);
+        // card2.handleGameScene(primaryStage);
+        towerPickMenu2.handleGameScene(primaryStage);
+
+
         //add styles
         scene1.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         scene2.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         scene3.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         scene4.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         scene5.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
-        //primary scene
-        primaryStage.setScene(scene1);
-        //handle buttons
-        mainMenu.buttonHandler(primaryStage, scene2);
-        pMenu.buttonHandler(primaryStage,scene3);
-        qMenu.buttonHandler(primaryStage, scene4);
-        card1.buttonHandler(primaryStage, scene5);
-        card2.buttonHandler(primaryStage,towerScene1);
-        towerPickMenu1.buttonHandler(primaryStage,towerScene2);
-        //towerPickMenu2.buttonHandler(primaryStage,gamePlayScene);
 
+
+        
+       
 
         primaryStage.show();
     }

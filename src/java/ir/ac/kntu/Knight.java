@@ -8,6 +8,8 @@ public class Knight extends Melee {
         setDamage(400);
         setSpeed(2);
         setRange(1);
+        setImage("card-select-knight");
+        setUnitImageURL("ir/ac/kntu/assets/knight_icon.png");
     }
 
     @Override

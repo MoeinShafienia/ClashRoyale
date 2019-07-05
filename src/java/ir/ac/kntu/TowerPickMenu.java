@@ -95,4 +95,13 @@ public class TowerPickMenu {
             stage.setScene(targetScene);
         });
     }
+
+    public void handleGameScene(Stage stage) {
+        nextButton.setOnAction(e -> {
+            GamePlayMenu game = new GamePlayMenu();
+            Scene scene6 = game.createScene();
+            scene6.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
+            stage.setScene(scene6);
+        });
+    }
 }

@@ -17,6 +17,7 @@ public class CardPickMenu{
     private VBox root;
     private FlowPane middle;
     private Button nextButton;
+    private static ArrayList<Soldier> selectedSoldiers;
 
     public CardPickMenu() {
         buttons = new ArrayList<>();
@@ -84,10 +85,45 @@ public class CardPickMenu{
         nextButton.disableProperty().bind(bb);
     }
 
-    public void buttonHandler(Stage stage, Scene targetScene) {
+    public void buttonHandler(Stage stage, Scene targetScene,int player) {
         nextButton.setOnAction(e -> {
+            handleSelectedSoldiers(player);
             stage.setScene(targetScene);
         });
+    }
+
+    private void handleSelectedSoldiers(int player) {
+        selectedSoldiers = new ArrayList<>();
+        for(int i = 0; i < 6; i++) {
+            if(buttons.get(i).isSelected()) {
+                switch(i) {
+                    case 0:
+                        selectedSoldiers.add(new Archer());
+                        break;
+                    case 1:
+                        selectedSoldiers.add(new Dragon());
+                        break;
+                    case 2:
+                        selectedSoldiers.add(new Knight());
+                        break;
+                    case 3:
+                        selectedSoldiers.add(new Goblin());
+                        break;
+                    case 4:
+                        selectedSoldiers.add(new Shield());
+                        break;
+                    case 5:
+                        selectedSoldiers.add(new Swordsman());
+                        break;
+                    default:
+                        break;    
+                }
+            }
+        }
+        for(Soldier i : selectedSoldiers) {
+            if(!i.equals(null)) System.out.println(i);
+        }
+        Player.getPlayer(player).setSelectedSoldiers(selectedSoldiers);
     }
 
 }

@@ -1,6 +1,9 @@
 package ir.ac.kntu;
 
+import javafx.geometry.Pos;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -13,7 +16,7 @@ public class Map {
     private static String[] processMap() {
         String[] gameMap = new String[20];
         try {
-            File myObj = new File("C:\\Users\\Moein\\Desktop\\LastProject\\src\\DefaultMap");
+            File myObj = new File("ir/ac/kntu/assets/DefaultMap");
             Scanner myReader = new Scanner(myObj);
             int i = 0;
             while (myReader.hasNextLine()) {
@@ -50,15 +53,18 @@ public class Map {
         } 
     }
 
-    public static void drawMap(Pane root, char[][] colors) {
+    public static Pane drawMap(char[][] colors) {
+        Pane pane = new Pane();
+        pane.setTranslateX(65);
         for (int i = 0; i < 800; i += 40) {
             for (int j = 0; j < 800; j += 40) {
                 Rectangle rectangle = new Rectangle(j, i, 40, 40);
                 setColor(rectangle, colors, i, j);
                 rectangle.setStroke(Color.BLACK);
-                root.getChildren().add(rectangle);
+                pane.getChildren().add(rectangle);
             }
         }
+        return pane;
     }
 
     public static void setColor(Rectangle rectangle, char[][] colors, int i,

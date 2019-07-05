@@ -1,3 +1,4 @@
+
 package ir.ac.kntu;
 
 import java.util.ArrayList;
@@ -19,3 +20,4 @@ public abstract class Ranged extends Soldier {
         targets.get(randomNumber).reduceHealth(getDamage());
     }
 }
+
