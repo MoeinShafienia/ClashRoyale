@@ -63,7 +63,7 @@ public abstract class Soldier extends Unit{
             return;
         }
         if (canMoveUp(NUMBER, map)) {
-            setPositionX(getPositionX() + NUMBER);
+            setPositionY(getPositionY() + NUMBER);
             lastMove = "nothing";
             move(speed - 1, lastMove);
         } else {
@@ -74,55 +74,126 @@ public abstract class Soldier extends Unit{
 
     public String moveHorizontal(String lastMove, char[][] map) {
         if (lastMove.equals("right")) {
-            if (map[getPositionX()][getPositionY() + 1] == 'y') {
-                setPositionY(getPositionY() + 1);
-                return "right";
+            if(map[getPositionX()][getPositionY() + 1] == 'y') {
+                if(enemyInfront(1)){
+                    return "right";
+                }else if(teamateInfront(1)){
+                    setPositionX(getPositionX() +1);
+                    return "right";
+                }
             }
+            return "right";
         } else if (lastMove.equals("left")) {
-            if (map[getPositionX()][getPositionY() - 1] =='y'){
-                setPositionY(getPositionY() - 1);
-                return "left";
+            if(map[getPositionX()][getPositionY() - 1] == 'y') {
+                if(enemyInfront(-1)){
+                    return "left";
+                }else if(teamateInfront(-1)){
+                    setPositionX(getPositionX() -1);
+                    return "left";
+                }
             }
+            return "left";
         } else {
             int movementNumbers = movementNumber(map);
             if (movementNumbers > 1) {
                 int randomNumber = RandomHelper.nextInt(2);
                 if (randomNumber == 1) {
-                    setPositionY(getPositionY() + 1);
+                    setPositionX(getPositionX() + 1);
                     return "right";
                 } else {
-                    setPositionY(getPositionY() - 1);
+                    setPositionX(getPositionX() - 1);
                     return "left";
                 }
             } else {
-                if (map[getPositionX()][getPositionY() + 1] == 'y') {
-                    setPositionY(getPositionY() + 1);
-                    return "right";
-                }
-                if (map[getPositionX()][getPositionY() - 1] == 'y') {
-                    setPositionY(getPositionY() - 1);
+                if (map[getPositionX() + 1][getPositionY()] == 'y') {
+                    if(!enemyInfront(1)){
+                        if(teamateInfront(1)){
+                            setPositionX(getPositionX() + 1);
+                            return "right";
+                        }
+                    }
+                }else{
+                    setPositionX(getPositionX() - 1);
                     return "left";
                 }
             }
         }
-        return "nothing";
+        return lastMove;
     }
 
     public int movementNumber(char[][] map) {
         int movementNumbers = 0;
-        if (map[getPositionX()][getPositionY() + 1] == 'y') {
-            movementNumbers++;
+        if (map[getPositionX() + 1][getPositionY()] == 'y') {
+            if(!enemyInfront(1)){
+                if(teamateInfront(1)){
+                    movementNumbers++;
+                }
+            }
         }
-        if (map[getPositionX()][getPositionY() - 1] == 'y') {
-            movementNumbers++;
+        if (map[getPositionX() - 1][getPositionY()] == 'y') {
+            if(!enemyInfront(-1)){
+                if(teamateInfront(-1)){
+                    movementNumbers++;
+                }
+            }
         }
         return movementNumbers;
     }
 
     public boolean canMoveUp(int NUMBER, char[][] map) {
-        return map[getPositionX() + NUMBER][getPositionY()] == 'y';
+
+        if(map[getPositionY() + NUMBER][getPositionY()] == 'y') {
+            //enemy in front
+            for (Player player : Player.getPlayers()) {
+                if (!this.getPlayer().equals(player)) {
+                    for (Soldier soldier : player.getSoldiers()) {
+                        if (soldier.getPositionY() == this.getPositionY() + NUMBER) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            //soldier of the same team in front
+            for (Soldier soldier : this.getPlayer().getSoldiers()) {
+                if (soldier.getPositionY() == this.getPositionY() + NUMBER) {
+                    if (this.getSpeed() - soldier.getSpeed() > 1) {
+                        return true;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public boolean enemyInfront(int number){
+        //enemy in front
+        //true means he cant move
+        for(Player player : Player.getPlayers()){
+            if(!this.getPlayer().equals(player)){
+                for(Soldier soldier : player.getSoldiers()){
+                    if(soldier.getPositionX() == this.getPositionX() + number){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean teamateInfront(int number){
+        // true means he can move
+        for(Soldier soldier : this.getPlayer().getSoldiers()){
+            if(soldier.getPositionX() == this.getPositionX() + number){
+                if(this.getSpeed() - soldier.getSpeed() <= 1){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public abstract Soldier newObject();
+
 
 }
