@@ -7,5 +7,6 @@ public class BlackTower extends Tower {
         setDamage(300);
         setRequiredMana(40);
         setRange(2);
+        setUnitImageURL("ir/ac/kntu/assets/black_tower_icon.png");
     }
 }
