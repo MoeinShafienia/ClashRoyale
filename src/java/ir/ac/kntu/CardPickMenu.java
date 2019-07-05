@@ -92,16 +92,6 @@ public class CardPickMenu{
         });
     }
 
-    public void handleGameScene(Stage stage) {
-        nextButton.setOnAction(e -> {
-            handleSelectedSoldiers(2);
-            GamePlayMenu game = new GamePlayMenu();
-            Scene scene6 = game.createScene();
-            scene6.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
-            stage.setScene(scene6);
-        });
-    }
-
     private void handleSelectedSoldiers(int player) {
         selectedSoldiers = new ArrayList<>();
         for(int i = 0; i < 6; i++) {
