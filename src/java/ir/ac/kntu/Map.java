@@ -61,7 +61,7 @@ public class Map {
         }
     }
 
-    private static void setColor(Rectangle rectangle, char[][] colors, int i,
+    public static void setColor(Rectangle rectangle, char[][] colors, int i,
                             int j) {
         char color = colors[i / 40][j / 40];
         switch (color) {
