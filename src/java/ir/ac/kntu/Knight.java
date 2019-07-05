@@ -8,6 +8,7 @@ public class Knight extends Melee {
         setDamage(400);
         setSpeed(2);
         setRange(1);
+        setImage("card-select-knight");
     }
 
     @Override

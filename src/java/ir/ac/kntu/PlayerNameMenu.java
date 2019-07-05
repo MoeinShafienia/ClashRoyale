@@ -48,10 +48,9 @@ public class PlayerNameMenu {
         childPane.getChildren().add(nameField);
     }
 
-    public void buttonHandler(Stage stage, Scene targetScene) {
+    public void buttonHandler(Stage stage, Scene targetScene, int player) {
         button.setOnAction(e -> {
-            String player1Name = nameField.getText();
-            System.out.println(player1Name);
+            Player.getPlayer(player).setName(nameField.getText());
             stage.setScene(targetScene);
         });
     }

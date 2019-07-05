@@ -8,6 +8,7 @@ public class Shield extends Melee {
         setDamage(150);
         setSpeed(1);
         setRange(1);
+        setImage("card-select-shield");
     }
 
     @Override

@@ -6,6 +6,8 @@ public class Archer extends Ranged {
         setDamage(200);
         setSpeed(1);
         setRange(2);
+        setImage("card-select-archer");
+        setUnitImageURL("ir/ac/kntu/assets/archer.png");
     }
 
     @Override

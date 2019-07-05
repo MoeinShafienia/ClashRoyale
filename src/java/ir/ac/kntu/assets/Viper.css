@@ -49,6 +49,14 @@
     -fx-opacity: 1;
 }
 
+.label-custom {
+    -fx-text-fill: #bab5ee;
+    -fx-text-weight: bold;
+    -fx-font-size: 18pt;
+    -fx-font-family: "Penumbra-HalfSerif";
+    -fx-opacity: 1;
+}
+
 #alignment {
     -ms-flex-align: center;
 }
@@ -90,6 +98,14 @@
     -fx-background-image: url("picture.jpg");
     -fx-background-repeat: stretch;   
     -fx-background-size: 1250 800;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.background-game {
+    -fx-background-image: url("JVl4jt.jpg");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 1750 800;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
