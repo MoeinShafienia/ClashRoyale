@@ -110,8 +110,7 @@ public class MainMenu {
             Platform.exit();
         });
         buttons.get(2).setOnAction(e -> {
-            LoadMenu menu = new LoadMenu();
-            stage.setScene(menu.createScene(stage));
+            stage.setScene(new LoadMenu().createScene(stage));
         });
 
     }

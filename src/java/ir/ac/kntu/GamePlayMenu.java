@@ -142,23 +142,23 @@ public class GamePlayMenu {
         scene = scene1;
     }
 
-    public void spawn(Soldier soldier) {
-        ImageView image = new ImageView(new Image(soldier.getUnitImageURL()));
-        image.setTranslateX(soldier.getPositionX());
-        image.setTranslateY(soldier.getPositionY());
+    public void spawn(Unit unit) {
+        ImageView image = new ImageView(new Image(unit.getUnitImageURL()));
+        image.setTranslateX(unit.getPositionX());
+        image.setTranslateY(unit.getPositionY());
         pane.getChildren().add(image);
     }
 
-    public void update(int x, int y, Soldier soldier) {
+    public void update(int x, int y, Unit unit) {
         Rectangle rectangle = new Rectangle(x, y, 40, 40);
         rectangle.setFill(Color.YELLOW);
         rectangle.setStroke(Color.BLACK);
         pane.getChildren().add(rectangle);
-        spawn(soldier);
+        spawn(unit);
     }
 
-    public void remove(Soldier soldier) {
-        Rectangle rectangle = new Rectangle(soldier.getPositionX(), soldier.getPositionY(), 40, 40);
+    public void remove(Unit unit) {
+        Rectangle rectangle = new Rectangle(unit.getPositionX(), unit.getPositionY(), 40, 40);
         rectangle.setFill(Color.YELLOW);
         rectangle.setStroke(Color.BLACK);
         pane.getChildren().add(rectangle);

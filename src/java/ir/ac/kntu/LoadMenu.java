@@ -16,7 +16,7 @@ public class LoadMenu {
     Button next,back;
 
     public LoadMenu() {
-        root = new VBox(10);
+        root = new VBox(20);
         root.setAlignment(Pos.CENTER);
         root.getStyleClass().add("card-picker-image");
     }
@@ -26,13 +26,16 @@ public class LoadMenu {
         addButton();
 
         handleText();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root,Constants.WIDTH,Constants.HEIGHT);
+        scene.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         buttonHandler(stage);
         return scene;
     }
 
     private void addTextField() {
-        answer = new TextField("Moji99");
+        answer = new TextField();
+        answer.setPrefWidth(120);
+        answer.setMaxWidth(500);
         root.getChildren().add(answer);
     }
     private void addButton() {
@@ -50,7 +53,7 @@ public class LoadMenu {
             }
             @Override
             protected boolean computeValue() {
-                if(answer.getText().equals(null)) {
+                if(answer.getText().isEmpty()) {
                     return true;
                 }
                 return false;
@@ -61,7 +64,7 @@ public class LoadMenu {
 
     public void buttonHandler(Stage stage) {
         next.setOnAction(e -> {
-
+            //handle loading mechanism
         });
         back.setOnAction(e -> {
             stage.setScene(MainMenu.getScene());
