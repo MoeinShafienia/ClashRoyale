@@ -23,12 +23,16 @@ public class Main extends Application {
         PlayerNameMenu qMenu = new PlayerNameMenu();
         CardPickMenu card1 = new CardPickMenu();
         CardPickMenu card2 = new CardPickMenu();
+        TowerPickMenu towerPickMenu1 = new TowerPickMenu(1);
+        TowerPickMenu towerPickMenu2 = new TowerPickMenu(2);
+
         //create scenes
         Scene scene1 = mainMenu.createScene();
         Scene scene2 = pMenu.createScene("Player 1 Name:");
         Scene scene3 = qMenu.createScene("Player 2 Name:");
         Scene scene4 = card1.createScene("Player 1 Choose 4 Cards:");
         Scene scene5 = card2.createScene("Player 2 Choose 4 Cards:");
+<<<<<<< HEAD
         //primary scene
         primaryStage.setScene(scene1);
         //handle buttons
@@ -37,6 +41,10 @@ public class Main extends Application {
         qMenu.buttonHandler(primaryStage, scene4,2);
         card1.buttonHandler(primaryStage, scene5,1);
         card2.handleGameScene(primaryStage);
+=======
+        Scene towerScene1 = towerPickMenu1.createScene();
+        Scene towerScene2 = towerPickMenu2.createScene();
+>>>>>>> cde18f88c78c242ce371e1b3a3bcdf45aa3eb31a
 
         //add styles
         scene1.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
@@ -44,6 +52,20 @@ public class Main extends Application {
         scene3.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         scene4.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         scene5.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
+<<<<<<< HEAD
+=======
+        //primary scene
+        primaryStage.setScene(scene1);
+        //handle buttons
+        mainMenu.buttonHandler(primaryStage, scene2);
+        pMenu.buttonHandler(primaryStage,scene3);
+        qMenu.buttonHandler(primaryStage, scene4);
+        card1.buttonHandler(primaryStage, scene5);
+        card2.buttonHandler(primaryStage,towerScene1);
+        towerPickMenu1.buttonHandler(primaryStage,towerScene2);
+        //towerPickMenu2.buttonHandler(primaryStage,gamePlayScene);
+
+>>>>>>> cde18f88c78c242ce371e1b3a3bcdf45aa3eb31a
 
         primaryStage.show();
     }
