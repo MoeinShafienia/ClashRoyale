@@ -104,11 +104,6 @@ public class TowerPickMenu {
             stage.setScene(scene6);
             //starting the game
             Map.startgame();
-            for(Player player : Player.getPlayers()){
-                for(Tower tower : player.getTowers()){
-                    GamePlayMenu.spawn(tower);
-                }
-            }
         });
     }
 }

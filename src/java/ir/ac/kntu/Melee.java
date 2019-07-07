@@ -8,25 +8,31 @@ public abstract class Melee extends Soldier {
     public void attack() {
         List<Unit> targets = new ArrayList<>();
 
-        if(!Unit.isThereUnitInThisPosition(getPositionX(),getPositionY()-1,getPlayer())){
-            targets.add(Unit.getUnit(getPositionX(),getPositionY()-1,
+        if(Unit.isThereUnitInThisPosition(getPositionX(),getPositionY()-40,
+                getPlayer())){
+            targets.add(Unit.getUnit(getPositionX(),getPositionY()-40,
                     getPlayer()));
         }
-        if(!Unit.isThereUnitInThisPosition(getPositionX(),getPositionY()+1,getPlayer())){
-            targets.add(Unit.getUnit(getPositionX(),getPositionY()+1,
+        if(Unit.isThereUnitInThisPosition(getPositionX(),getPositionY()+40,
+                getPlayer())){
+            targets.add(Unit.getUnit(getPositionX(),getPositionY()+40,
                     getPlayer()));
         }
-        if(!Unit.isThereUnitInThisPosition(getPositionX()-1,getPositionY(),getPlayer())){
-            targets.add(Unit.getUnit(getPositionX()-1,getPositionY(),
+        if(Unit.isThereUnitInThisPosition(getPositionX()-40,getPositionY(),
+                getPlayer())){
+            targets.add(Unit.getUnit(getPositionX()-40,getPositionY(),
                     getPlayer()));
         }
-        if(!Unit.isThereUnitInThisPosition(getPositionX()+1,getPositionY(),getPlayer())){
-            targets.add(Unit.getUnit(getPositionX()+1,getPositionY(),
+        if(Unit.isThereUnitInThisPosition(getPositionX()+40,getPositionY(),
+                getPlayer())){
+            targets.add(Unit.getUnit(getPositionX()+40,getPositionY(),
                     getPlayer()));
         }
 
-        int randomNumber = RandomHelper.nextInt(targets.size());
-        targets.get(randomNumber).reduceHealth(this.getDamage());
+        if(targets.size() != 0) {
+            int randomNumber = RandomHelper.nextInt(targets.size());
+            targets.get(randomNumber).reduceHealth(this.getDamage());
+        }
 
     }
 

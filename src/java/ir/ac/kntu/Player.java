@@ -135,14 +135,20 @@ public class Player implements Serializable {
 
         for (int i = 1; i <= 20; i++) {
             if (map[J][i] == 'r') {
-                System.out.println("ha");
-                spawnLocation.add(new Position(i*40, J*40));
+                System.out.println("spawn location found" + J + " " + i);
+                if(!Unit.isThereUnitInThisPosition(i*40,J*40,this)) {
+                    spawnLocation.add(new Position(i * 40, J * 40));
+                }
             }
         }
 
-        int randomNumber = RandomHelper.nextInt(spawnLocation.size());
-        soldier.setPositionX(spawnLocation.get(randomNumber).getX());
-        soldier.setPositionY(spawnLocation.get(randomNumber).getY());
+        if(spawnLocation.size() != 0) {
+            int randomNumber = RandomHelper.nextInt(spawnLocation.size());
+            soldier.setPositionX(spawnLocation.get(randomNumber).getX());
+            soldier.setPositionY(spawnLocation.get(randomNumber).getY());
+            System.out.println("soldiers x :" + soldier.getPositionX() +
+                    " " + soldier.getPositionY());
+        }
 
     }
 
