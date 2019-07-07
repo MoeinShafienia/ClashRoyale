@@ -56,7 +56,7 @@ public abstract class Unit {
     public void setPositionX(int positionX) {
         int previosX = this.getPositionX();
         this.positionX = positionX;
-        GamePlayMenu.update(positionX,getPositionY(),this);
+        GamePlayMenu.update(previosX,getPositionY(),this);
     }
     public int getPositionY() {
         return positionY;

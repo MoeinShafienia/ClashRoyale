@@ -123,13 +123,13 @@ public class GamePlayMenu {
             } else if (key.getCode() == KeyCode.F) {
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
             } else if (key.getCode() == KeyCode.H) {
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0).newObject());
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.J) {
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1).newObject());
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.K) {
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2).newObject());
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.L) {
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(3).newObject());
             }
         });
     }

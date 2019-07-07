@@ -9,7 +9,7 @@ public class Swordsman extends Melee {
         setSpeed(1);
         setRange(1);
         setImage("card-select-swordsman");
-        setUnitImageURL("ir/ac/kntu/assets/swordsman_icon.png");
+        setUnitImageURL("ir/ac/kntu/assets/swordsman_icon.jpg");
     }
 
     @Override
