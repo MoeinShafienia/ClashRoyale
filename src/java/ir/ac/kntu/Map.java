@@ -17,7 +17,7 @@ public class Map {
     private static String[] processMap() {
         String[] gameMap = new String[22];
         try {
-            File myObj = new File("ir/ac/kntu/assets/DefaultMap");
+            File myObj = new File("C:\\Users\\Moein\\Desktop\\LastProject\\src\\ir\\ac\\kntu\\assets\\DefaultMap");
             Scanner myReader = new Scanner(myObj);
             int i = 0;
             while (myReader.hasNextLine()) {
@@ -65,7 +65,7 @@ public class Map {
         pane.setTranslateX(65);
         for (int i = 0; i < 880; i += 40) {
             for (int j = 0; j < 880; j += 40) {
-                Rectangle rectangle = new Rectangle(j, i, 40, 40);
+                Rectangle rectangle = new Rectangle(i, j, 40, 40);
                 setColor(rectangle, colors, i, j);
                 rectangle.setStroke(Color.BLACK);
                 pane.getChildren().add(rectangle);

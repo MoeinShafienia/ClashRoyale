@@ -126,19 +126,19 @@ public class Player implements Serializable {
     private void chooseSpawnLocation(Soldier soldier, Player player) {
         List<Position> spawnLocation = new ArrayList<>();
         char[][] map = Map.readMap();
-        final int J;
+        final int X;
         if (Player.getPlayer(1).equals(player)) {
-            J = 20;
+            X = 1;
         } else {
-            J = 1;
+            X = 20;
         }
 
-        for (int i = 1; i <= 20; i++) {
-            if (map[J][i] == 'r') {
-                System.out.println("spawn location found" + J + " " + i);
-                if(!Unit.isThereUnitInThisPosition(i*40,J*40,this)) {
-                    spawnLocation.add(new Position(i * 40, J * 40));
-                }
+        for (int j = 1; j <= 20; j++) {
+            if (map[X][j] == 'r') {
+                System.out.println("spawn location found" + X + " " + j);
+                //if(!Unit.isThereUnitInThisPosition(i*40,J*40,this)) {
+                    spawnLocation.add(new Position(X, j));
+                //}
             }
         }
 

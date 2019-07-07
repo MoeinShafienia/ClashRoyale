@@ -61,45 +61,63 @@ public abstract class Soldier extends Unit {
     }
 
     public void move(int speed){
+
+        int number;
+        if(Player.getPlayer(1).getPlayerId() == 1){
+            number = 1;
+        }else{
+            number = -1;
+        }
+
         System.out.println(this.getPlayer().getSoldiers().size());
         if(speed <= 0){
             System.out.println(this.getPositionX() +" " +getPositionY()+  "my" +
                     " speed is zero");
             return;
         }
-        if(canMoveUp()){
-            System.out.println("up");
-            setPositionY(getPositionY() - 40);
-            move(speed-1);
-        }else if(canMoveRight()){
+        if(canMoveRight()){
             System.out.println("right");
-            setPositionX(getPositionX() + 40);
+            setPositionX(getPositionX() + 1);
+            lastMove = "right";
             move(speed-1);
-        }else if(canMoveLeft()){
-            System.out.println("left");
-            setPositionX(getPositionX() - 40);
-            move(speed-1);
-        }else {
-            System.out.println("hey im trapped");
+            return;
+        }
+        if(canMoveUp()){
+            if (!lastMove.equals("down")) {
+                System.out.println("up");
+                setPositionY(getPositionY() - 1);
+                lastMove = "up";
+                move(speed-1);
+                return;
+            }
+        }
+        if(canMoveDown()){
+            if (!lastMove.equals("up")) {
+                System.out.println("left");
+                setPositionY(getPositionY() + 1);
+                lastMove = "down";
+                move(speed-1);
+                return;
+            }
         }
     }
 
     public boolean canMoveUp(){
-        if(map[getPositionY()/40 - 1][getPositionX()/40] == 'y'){
+        if(map[getPositionX()][getPositionY() - 1] == 'y'){
             return true;
         }
         return false;
     }
 
     public boolean canMoveRight(){
-        if(map[getPositionY()/40][getPositionX()/40 + 1] == 'y'){
+        if(map[getPositionX() + 1][getPositionY()] == 'y'){
             return true;
         }
         return false;
     }
 
-    public boolean canMoveLeft(){
-        if(map[getPositionY()/40][getPositionX()/40 - 1] == 'y'){
+    public boolean canMoveDown(){
+        if(map[getPositionX()][getPositionY() + 1] == 'y'){
             return true;
         }
         return false;
