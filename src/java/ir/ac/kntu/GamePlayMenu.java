@@ -23,6 +23,7 @@ public class GamePlayMenu {
     private static Pane pane;
     private VBox topChart,bottomChart;
     private HBox topUnits,bottomUnits,topKeys,bottomKeys;
+    private static Label mana1,mana2;
 
     public GamePlayMenu() {
         root = new BorderPane();
@@ -82,9 +83,14 @@ public class GamePlayMenu {
     private void addManaBar(VBox box, int player) {
         Label mana = new Label("Mana");
         mana.getStyleClass().add("label-custom");
-        IntegerProperty prop = new SimpleIntegerProperty(Player.getPlayer(player).getMana());
-        mana.textProperty().bind(prop.asString());
+        // IntegerProperty prop = new SimpleIntegerProperty(Player.getPlayer(player).getMana());
+        // mana.textProperty().bind(prop.asString());
         box.getChildren().add(mana);
+        if(player == 1) {
+            mana1 = mana;
+        } else {
+            mana2 = mana;
+        }
     }
 
     private void addName(String name, VBox chart){
@@ -113,6 +119,13 @@ public class GamePlayMenu {
         }
     }
 
+    public static void updateMana() {
+        Platform.runLater(() -> {
+            mana1.setText(String.valueOf(Player.getPlayer(1).getMana()));
+            mana2.setText(String.valueOf(Player.getPlayer(2).getMana()));
+        });
+    }
+
     public void handleKeyPressed(Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
             if(key.getCode() == KeyCode.A) {
@@ -128,17 +141,17 @@ public class GamePlayMenu {
                 System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
             } else if (key.getCode() == KeyCode.H) {
-                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0).newObject());
+                System.out.println("spawning notice " + Player.getPlayer(2).getSelectedSoldiers().get(0));
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.J) {
-                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1).newObject());
+                System.out.println("spawning notice " + Player.getPlayer(2).getSelectedSoldiers().get(0));
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.K) {
-                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2).newObject());
+                System.out.println("spawning notice " + Player.getPlayer(2).getSelectedSoldiers().get(0));
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.L) {
-                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
+                System.out.println("spawning notice " + Player.getPlayer(2).getSelectedSoldiers().get(0));
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(3).newObject());
             }
         });
     }
