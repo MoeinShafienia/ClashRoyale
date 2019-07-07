@@ -1,21 +1,22 @@
 package ir.ac.kntu;
 
+import javafx.application.Platform;
+
 public class GameCycle implements Runnable {
     @Override
     public void run() {
-        try {
-            while (!Player.isGameOver()) {
-                System.out.println("1");
-                Tower.handleAttack();
-                System.out.println("2");
-                Soldier.handle(Soldier::attack);
-                System.out.println("3");
-                Soldier.handle(soldier -> soldier.move(soldier.getSpeed(),"nothing"));
-                System.out.println("4");
-                Player.handleMana();
+
+        while (!Player.isGameOver()) {
+            Tower.handleAttack();
+            Soldier.handle(Soldier::attack);
+            Soldier.handle(soldier -> soldier.move(soldier.getSpeed()));
+            Player.handleMana();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
     }
 }

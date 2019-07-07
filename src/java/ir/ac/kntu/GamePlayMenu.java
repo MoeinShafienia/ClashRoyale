@@ -1,5 +1,6 @@
 package ir.ac.kntu;
 
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
@@ -115,20 +116,28 @@ public class GamePlayMenu {
     public void handleKeyPressed(Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
             if(key.getCode() == KeyCode.A) {
+                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.S) {
+                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.D) {
+                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.F) {
+                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
             } else if (key.getCode() == KeyCode.H) {
+                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.J) {
+                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.K) {
+                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.L) {
+                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
             }
         });
@@ -143,24 +152,34 @@ public class GamePlayMenu {
     }
 
     public static void spawn(Unit unit) {
+        System.out.println("spawning graphic");
         ImageView image = new ImageView(new Image(unit.getUnitImageURL()));
         image.setTranslateX(unit.getPositionX());
         image.setTranslateY(unit.getPositionY());
-        pane.getChildren().add(image);
+        Platform.runLater(() ->{
+            pane.getChildren().add(image);
+        });
     }
 
     public static void update(int x, int y, Unit unit) {
+        System.out.println("updating graphic");
         Rectangle rectangle = new Rectangle(x, y, 40, 40);
         rectangle.setFill(Color.YELLOW);
         rectangle.setStroke(Color.BLACK);
-        pane.getChildren().add(rectangle);
+        Platform.runLater(() -> {
+            pane.getChildren().add(rectangle);
+        });
         spawn(unit);
     }
 
     public static void remove(Unit unit) {
-        Rectangle rectangle = new Rectangle(unit.getPositionX(), unit.getPositionY(), 40, 40);
+        System.out.println("removing graphic");
+        Rectangle rectangle = new Rectangle(unit.getPositionX(),
+                unit.getPositionY(), 40, 40);
         rectangle.setFill(Color.YELLOW);
         rectangle.setStroke(Color.BLACK);
-        pane.getChildren().add(rectangle);
+        Platform.runLater(() -> {
+            pane.getChildren().add(rectangle);
+        });
     } 
 }

@@ -1,5 +1,6 @@
 package ir.ac.kntu;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -39,6 +40,12 @@ public class Map {
             for (int j = 0; j < 22; j++) {
                 mainMap[i][j] = map[i].charAt(j);
             }
+        }
+        for (int i = 0; i < 22; i++) {
+            for (int j = 0; j < 22; j++) {
+                System.out.print( i + " " + j + " " + mainMap[i][j]);
+            }
+            System.out.println();
         }
         return mainMap;
     }
@@ -93,6 +100,8 @@ public class Map {
     }
 
     public static void startgame() {
-        new Thread(new GameCycle()).start();
+        Platform.runLater(() ->{
+            new Thread(new GameCycle()).start();
+        });
     }
 }

@@ -67,16 +67,18 @@ public class Tower extends Unit {
     @Override
     public void attack(){
         List<Unit> targets = new ArrayList<>();
-        for(int i = positionX - range ; i < positionX + range ; i++){
-            for(int j = positionY - range ; j < positionY + range ; j++){
+        for(int i = positionX - 40*range ; i < positionX + 40*range ; i+=40){
+            for(int j = positionY - 40*range ; j < positionY +40* range ; j+=40){
                 if(Unit.isThereUnitInThisPosition(i,j,player)){
                     targets.add(Soldier.getUnit(i,j,this.player));
                 }
             }
         }
         targets = targets.stream().filter(unit -> unit instanceof Soldier).collect(Collectors.toList());
-        int randomNumber = RandomHelper.nextInt(targets.size());
-        targets.get(randomNumber).reduceHealth(this.damage);
+        if(targets.size() != 0) {
+            int randomNumber = RandomHelper.nextInt(targets.size());
+            targets.get(randomNumber).reduceHealth(this.damage);
+        }
     }
 
 }
