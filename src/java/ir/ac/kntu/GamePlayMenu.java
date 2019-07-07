@@ -5,6 +5,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,6 +25,7 @@ public class GamePlayMenu {
     private VBox topChart,bottomChart;
     private HBox topUnits,bottomUnits,topKeys,bottomKeys;
     private static Label mana1,mana2;
+    private Button save;
 
     public GamePlayMenu() {
         root = new BorderPane();
@@ -45,6 +47,10 @@ public class GamePlayMenu {
         bottomChart.getChildren().add(bottomUnits);
         addKeys(1);
         addManaBar(bottomChart,1);
+        save = new Button("Save");
+        bottomChart.getChildren().add(save);
+        save.getStyleClass().add("custom-button");
+        saveHandler();
         root.setLeft(bottomChart);
 
         pane = Map.drawMap(Map.getMap());
@@ -83,8 +89,6 @@ public class GamePlayMenu {
     private void addManaBar(VBox box, int player) {
         Label mana = new Label("Mana");
         mana.getStyleClass().add("label-custom");
-        // IntegerProperty prop = new SimpleIntegerProperty(Player.getPlayer(player).getMana());
-        // mana.textProperty().bind(prop.asString());
         box.getChildren().add(mana);
         if(player == 1) {
             mana1 = mana;
@@ -195,4 +199,10 @@ public class GamePlayMenu {
             pane.getChildren().add(rectangle);
         });
     } 
+
+    private void saveHandler() {
+        save.setOnAction(e -> {
+            //handle save
+        });
+    }
 }

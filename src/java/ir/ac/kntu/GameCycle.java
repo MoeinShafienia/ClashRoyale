@@ -10,7 +10,7 @@ public class GameCycle implements Runnable {
             //Tower.handleAttack();
             //Soldier.handle(Soldier::attack);
             Soldier.handle(soldier -> soldier.move(soldier.getSpeed()));
-            //Player.handleMana();
+            Player.handleMana();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
