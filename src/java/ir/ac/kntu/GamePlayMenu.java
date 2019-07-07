@@ -167,8 +167,8 @@ public class GamePlayMenu {
     public static void spawn(Unit unit) {
         System.out.println("spawning graphic");
         ImageView image = new ImageView(new Image(unit.getUnitImageURL()));
-        image.setTranslateX(unit.getPositionX());
-        image.setTranslateY(unit.getPositionY());
+        image.setTranslateX(unit.getPositionX() * 40);
+        image.setTranslateY(unit.getPositionY() * 40);
         Platform.runLater(() ->{
             pane.getChildren().add(image);
         });
@@ -176,7 +176,7 @@ public class GamePlayMenu {
 
     public static void update(int x, int y, Unit unit) {
         System.out.println("updating graphic");
-        Rectangle rectangle = new Rectangle(x, y, 40, 40);
+        Rectangle rectangle = new Rectangle(x*40, y*40, 40, 40);
         rectangle.setFill(Color.YELLOW);
         rectangle.setStroke(Color.BLACK);
         Platform.runLater(() -> {
@@ -187,8 +187,8 @@ public class GamePlayMenu {
 
     public static void remove(Unit unit) {
         System.out.println("removing graphic");
-        Rectangle rectangle = new Rectangle(unit.getPositionX(),
-                unit.getPositionY(), 40, 40);
+        Rectangle rectangle = new Rectangle(unit.getPositionX()*40,
+                unit.getPositionY()*40, 40, 40);
         rectangle.setFill(Color.YELLOW);
         rectangle.setStroke(Color.BLACK);
         Platform.runLater(() -> {

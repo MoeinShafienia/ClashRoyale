@@ -44,6 +44,9 @@ public abstract class Unit {
 
     public void setHealth(int health) {
         this.health = health;
+        /*if(health <= 0){
+            GamePlayMenu.remove(this);
+        }*/
     }
 
     public int getDamage() {
@@ -69,7 +72,8 @@ public abstract class Unit {
     public void setPositionX(int positionX) {
         int previosX = this.getPositionX();
         this.positionX = positionX;
-        GamePlayMenu.update(previosX,getPositionY(),this);
+        System.out.println("soldier position" + getPositionX() + " "+ getPositionY());
+        GamePlayMenu.update(previosX, getPositionY(), this);
     }
 
     public int getPositionY() {
@@ -79,6 +83,7 @@ public abstract class Unit {
     public void setPositionY(int positionY) {
         int previosY = this.getPositionY();
         this.positionY = positionY;
+        System.out.println("soldier position" + getPositionX() + " "+ getPositionY());
         GamePlayMenu.update(getPositionX(), previosY, this);
     }
 
@@ -122,10 +127,10 @@ public abstract class Unit {
 
     public void reduceHealth(int damage) {
         setHealth(getHealth() - damage);
-        if (getHealth() <= 0) {
+        /*if (getHealth() <= 0) {
             Player.removeUnit(this);
             GamePlayMenu.remove(this);
-        }
+        }*/
     }
 
 }
