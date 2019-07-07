@@ -52,168 +52,56 @@ public abstract class Soldier extends Unit {
         this.speed = speed;
     }
 
-    public void move(int speed) {
-        final int NUMBER;
-
-        if (getPlayer().getPlayerId() == 1) {
-            NUMBER = +40;
-        } else {
-            NUMBER = -40;
-        }
-        System.out.println("number is " + NUMBER);
-
-        if (speed == 0) {
-            return;
-        }
-        if (canMoveUp(NUMBER, map, speed)) {
-            setPositionY(getPositionY() + NUMBER);
-            System.out.println("move up" + NUMBER);
-            this.lastMove = "nothing";
-            move(speed - 1);
-        } else {
-            this.lastMove = moveHorizontal(lastMove, map);
-            move(speed - 1);
-        }
-    }
-
-    public String moveHorizontal(String lastMove, char[][] map) {
-        System.out.println("last move is " + lastMove);
-        if (lastMove.equals("right")) {
-            if (map[getPositionY() / 40][getPositionX() / 40 + 1] == 'y') {
-                if (enemyInfront(40)) {
-                    return "right";
-                } else if (teamateInfront(40)) {
-                    setPositionX(getPositionX() + 40);
-                    System.out.println("moving right");
-                    return "right";
-                }
-            }
-            return "right";
-        } else if (lastMove.equals("left")) {
-            if (map[getPositionY() / 40][getPositionX() / 40 - 1] == 'y') {
-                if (enemyInfront(-40)) {
-                    return "left";
-                } else if (teamateInfront(-40)) {
-                    setPositionX(getPositionX() - 40);
-                    System.out.println("moving left");
-                    return "left";
-                }
-            }
-            return "left";
-        } else {
-            int movementNumbers = movementNumber(map);
-            if (movementNumbers > 1) {
-                int randomNumber = RandomHelper.nextInt(2);
-                if (randomNumber == 1) {
-                    setPositionX(getPositionX() + 40);
-                    System.out.println("not moving up");
-                    return "right";
-                } else {
-                    setPositionX(getPositionX() - 40);
-                    System.out.println("not moving up");
-                    return "left";
-                }
-            } else {
-                System.out.println("got here moein");
-                if (map[getPositionY() / 40][getPositionX() / 40 + 1] == 'y') {
-                    if (!enemyInfront(40)) {
-                        if (teamateInfront(40)) {
-                            setPositionX(getPositionX() + 40);
-                            System.out.println("moving right");
-                            return "right";
-                        }
-                    }
-                } else {
-                    if (!enemyInfront(-40)) {
-                        if (teamateInfront(-40)) {
-                            setPositionX(getPositionX() - 40);
-                            System.out.println("moving left");
-                            return "left";
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println("bug");
-        return lastMove;
-    }
-
-    public int movementNumber(char[][] map) {
-        int movementNumbers = 0;
-        if (map[getPositionY() / 40 ][getPositionX() / 40+ 1] == 'y') {
-            if (!enemyInfront(40)) {
-                if (teamateInfront(40)) {
-                    movementNumbers++;
-                }
-            }
-        }
-        if (map[getPositionY() / 40 ][getPositionX() / 40- 1] == 'y') {
-            if (!enemyInfront(-40)) {
-                if (teamateInfront(-40)) {
-                    movementNumbers++;
-                }
-            }
-        }
-        return movementNumbers;
-    }
-
-    public boolean canMoveUp(int NUMBER, char[][] map, int speed) {
-
-        if (map[getPositionY() / 40 + NUMBER / 40][getPositionX() / 40] == 'y') {
-            System.out.println("got into if");
-            //enemy in front
-            for (Player player : Player.getPlayers()) {
-                if (!this.getPlayer().equals(player)) {
-                    for (Soldier soldier : player.getSoldiers()) {
-                        if (soldier.getPositionY() == this.getPositionY() + NUMBER) {
-                            return false;
-                        }
-                    }
-                }
-            }
-            //soldier of the same team in front
-            for (Soldier soldier : this.getPlayer().getSoldiers()) {
-                if (soldier.getPositionY() == this.getPositionY() + NUMBER) {
-                    return speed >= 2;
-                }
-            }
-            return true;
-        }
-        System.out.println("do not got into if");
-        return false;
-    }
-
-    public boolean enemyInfront(int number) {
-        //enemy in front
-        //true means he cant move
-        for (Player player : Player.getPlayers()) {
-            if (!this.getPlayer().equals(player)) {
-                for (Soldier soldier : player.getSoldiers()) {
-                    if (soldier.getPositionY() == this.getPositionY() + number) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    public boolean teamateInfront(int number) {
-        // true means he can move
-        for (Soldier soldier : this.getPlayer().getSoldiers()) {
-            if (soldier.getPositionY() == this.getPositionY() + number) {
-                if (this.getSpeed() - soldier.getSpeed() <= 1) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 
     public abstract Soldier newObject();
 
 
     public String getLastMove(){
         return lastMove;
+    }
+
+    public void move(int speed){
+        System.out.println(this.getPlayer().getSoldiers().size());
+        if(speed <= 0){
+            System.out.println(this.getPositionX() +" " +getPositionY()+  "my" +
+                    " speed is zero");
+            return;
+        }
+        if(canMoveUp()){
+            System.out.println("up");
+            setPositionY(getPositionY() - 40);
+            move(speed-1);
+        }else if(canMoveRight()){
+            System.out.println("right");
+            setPositionX(getPositionX() + 40);
+            move(speed-1);
+        }else if(canMoveLeft()){
+            System.out.println("left");
+            setPositionX(getPositionX() - 40);
+            move(speed-1);
+        }else {
+            System.out.println("hey im trapped");
+        }
+    }
+
+    public boolean canMoveUp(){
+        if(map[getPositionY()/40 - 1][getPositionX()/40] == 'y'){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean canMoveRight(){
+        if(map[getPositionY()/40][getPositionX()/40 + 1] == 'y'){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean canMoveLeft(){
+        if(map[getPositionY()/40][getPositionX()/40 - 1] == 'y'){
+            return true;
+        }
+        return false;
     }
 }
