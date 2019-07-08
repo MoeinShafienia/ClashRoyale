@@ -175,7 +175,7 @@ public abstract class Soldier extends Unit {
     public boolean canMoveRight(int number) {
         if(map[getPositionX() + number][getPositionY()] == 'r'){
             removableList.add(this);
-            getPlayer().setHealth(getHealth() - 1);
+            getPlayer().setHealth(getPlayer().getHealth() - 1);
             return false;
         }
         if (map[getPositionX() + number][getPositionY()] == 'y') {

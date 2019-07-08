@@ -95,6 +95,7 @@ public class Player implements Serializable {
 
     public static boolean isGameOver() {
         for (Player player : players) {
+            System.out.println("health is" + player.getHealth());
             if (player.getHealth() <= 0) {
                 return true;
             }

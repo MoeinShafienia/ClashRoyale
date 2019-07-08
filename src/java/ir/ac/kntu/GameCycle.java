@@ -14,7 +14,8 @@ public class GameCycle implements Runnable {
             }
         }
 
-        while (true) {
+        while (!Player.isGameOver()) {
+            System.out.println("im in");
             Tower.handleAttack();
             //Soldier.handle(Soldier::attack);
             Soldier.handleMove();
@@ -31,6 +32,6 @@ public class GameCycle implements Runnable {
                 e.printStackTrace();
             }
         }
-
+        System.out.println("game over");
     }
 }
