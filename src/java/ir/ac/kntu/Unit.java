@@ -73,7 +73,7 @@ public abstract class Unit {
         int previosX = this.getPositionX();
         this.positionX = positionX;
         System.out.println("soldier position" + getPositionX() + " "+ getPositionY());
-        GamePlayMenu.update(previosX, getPositionY(), this);
+        GamePlayMenu.update();
     }
 
     public int getPositionY() {
@@ -84,7 +84,7 @@ public abstract class Unit {
         int previosY = this.getPositionY();
         this.positionY = positionY;
         System.out.println("soldier position" + getPositionX() + " "+ getPositionY());
-        GamePlayMenu.update(getPositionX(), previosY, this);
+        GamePlayMenu.update();
     }
 
     public Player getPlayer() {

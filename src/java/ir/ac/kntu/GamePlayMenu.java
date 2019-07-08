@@ -178,7 +178,7 @@ public class GamePlayMenu {
         });
     }
 
-    public static void update(int x, int y, Unit unit) {
+    public static void update() {
         System.out.println("updating graphic");
         Rectangle rectangle = new Rectangle(x*40, y*40, 40, 40);
         rectangle.setFill(Color.YELLOW);

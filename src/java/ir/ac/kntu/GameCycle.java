@@ -6,7 +6,15 @@ public class GameCycle implements Runnable {
     @Override
     public void run() {
 
-        while (!Player.isGameOver()) {
+        System.out.println("spawning towers");
+        for(Player player : Player.getPlayers()){
+            for(Tower t : player.getTowers()){
+                System.out.println("hey im spawning");
+                player.spawn(t);
+            }
+        }
+
+        while (true) {
             //Tower.handleAttack();
             //Soldier.handle(Soldier::attack);
             Soldier.handle(soldier -> soldier.move(soldier.getSpeed()));

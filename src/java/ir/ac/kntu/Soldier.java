@@ -11,15 +11,15 @@ public abstract class Soldier extends Unit {
         for (int i = 1; i <= 2; i++) {
             Player player = Player.getPlayer(i);
             player.getSoldiers().stream()
-                    .filter(Soldier::isSoldierAtHisBase)
+                    //.filter(Soldier::isSoldierAtHisBase)
                     .forEach(handlerer::apply);
         }
-        for (int i = 1; i <= 2; i++) {
+        /*for (int i = 1; i <= 2; i++) {
             Player player = Player.getPlayer(i);
             player.getSoldiers().stream()
-                    .filter(Soldier::isSoldierAtEnemyBase)
+                    //.filter(Soldier::isSoldierAtEnemyBase)
                     .forEach(handlerer::apply);
-        }
+        }*/
     }
 
     public boolean isSoldierAtEnemyBase() {
@@ -63,11 +63,12 @@ public abstract class Soldier extends Unit {
     public void move(int speed){
 
         int number;
-        if(Player.getPlayer(1).getPlayerId() == 1){
+        if(this.getPlayer().equals(Player.getPlayer(1))){
             number = 1;
         }else{
             number = -1;
         }
+        System.out.println("that fucking number is " + number);
 
         System.out.println(this.getPlayer().getSoldiers().size());
         if(speed <= 0){
@@ -75,9 +76,9 @@ public abstract class Soldier extends Unit {
                     " speed is zero");
             return;
         }
-        if(canMoveRight()){
+        if(canMoveRight(number)){
             System.out.println("right");
-            setPositionX(getPositionX() + 1);
+            setPositionX(getPositionX() + number);
             lastMove = "right";
             move(speed-1);
             return;
@@ -109,8 +110,8 @@ public abstract class Soldier extends Unit {
         return false;
     }
 
-    public boolean canMoveRight(){
-        if(map[getPositionX() + 1][getPositionY()] == 'y'){
+    public boolean canMoveRight(int number){
+        if(map[getPositionX() + number][getPositionY()] == 'y'){
             return true;
         }
         return false;
