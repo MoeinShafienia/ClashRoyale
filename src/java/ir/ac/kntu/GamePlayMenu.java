@@ -29,8 +29,8 @@ public class GamePlayMenu {
 
     public GamePlayMenu() {
         root = new BorderPane();
-        topChart = new VBox(5);
-        bottomChart = new VBox(5);
+        topChart = new VBox(20);
+        bottomChart = new VBox(20);
         topUnits = new HBox(5);
         bottomUnits = new HBox(5);
         topKeys = new HBox(90);
@@ -65,7 +65,7 @@ public class GamePlayMenu {
         addManaBar(topChart,2);
         root.setRight(topChart);
 
-        scene = new Scene(root,Constants.WIDTH + 500,Constants.HEIGHT+80);
+        scene = new Scene(root,Constants.WIDTH + 600,Constants.HEIGHT+80);
         handleKeyPressed(scene);
         return scene;
     }
@@ -188,8 +188,15 @@ public class GamePlayMenu {
         for(Soldier soldier : Player.getPlayer(1).getSoldiers()) {
             spawn(soldier);
         }
+        for(Tower tower : Player.getPlayer(1).getTowers()) {
+            spawn(tower);
+            System.out.println("Tower is spawned");
+        }
         for(Soldier soldier : Player.getPlayer(2).getSoldiers()) {
             spawn(soldier);
+        }
+        for(Tower tower : Player.getPlayer(2).getTowers()) {
+            spawn(tower);
         }
     }
 

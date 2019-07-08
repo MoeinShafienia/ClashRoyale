@@ -47,7 +47,7 @@ public class Main extends Application {
         card2.buttonHandler(primaryStage,towerScene1,2);
         towerPickMenu1.buttonHandler(primaryStage,towerScene2);
         // card2.handleGameScene(primaryStage);
-        towerPickMenu2.handleGameScene(primaryStage);
+        towerPickMenu2.buttonHandler(primaryStage,towerScene2);
 
 
         //add styles

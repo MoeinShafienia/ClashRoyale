@@ -48,18 +48,18 @@ public class TowerPickMenu {
                     public void handle(MouseEvent e) {
                         if(towers.size() < 3){
                             BlackTower tower = new BlackTower();
-                            tower.setPositionX((int)rectangle.getX());
-                            tower.setPositionY((int)rectangle.getY());
+                            tower.setPositionX((int)rectangle.getX()/40);
+                            tower.setPositionY((int)rectangle.getY()/40);
                             towers.add(tower);
                         }else if (towers.size() < 6){
                             ElectricTower tower = new ElectricTower();
-                            tower.setPositionX((int)rectangle.getX());
-                            tower.setPositionY((int)rectangle.getY());
+                            tower.setPositionX((int)rectangle.getX()/40);
+                            tower.setPositionY((int)rectangle.getY()/40);
                             towers.add(tower);
                         }else if(towers.size() < 9){
                             HospitalTower tower = new HospitalTower();
-                            tower.setPositionX((int)rectangle.getX());
-                            tower.setPositionY((int)rectangle.getY());
+                            tower.setPositionX((int)rectangle.getX()/40);
+                            tower.setPositionY((int)rectangle.getY()/40);
                             towers.add(tower);
                         }
                     }
@@ -91,10 +91,11 @@ public class TowerPickMenu {
             if(player == 1){
                 Player.getPlayer(1).setTowers(towers);
                 System.out.println("towers set" + towers.size() + " size");
+                stage.setScene(targetScene);
             }else{
                 Player.getPlayer(2).setTowers(towers);
+                handleGameScene(stage);
             }
-            stage.setScene(targetScene);
         });
     }
 
