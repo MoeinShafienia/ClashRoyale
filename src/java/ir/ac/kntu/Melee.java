@@ -8,24 +8,24 @@ public abstract class Melee extends Soldier {
     public void attack() {
         List<Unit> targets = new ArrayList<>();
 
-        if(Unit.isThereUnitInThisPosition(getPositionX(),getPositionY()-40,
+        if(Unit.isThereUnitInThisPosition(getPositionX(),getPositionY()-1,
                 getPlayer())){
-            targets.add(Unit.getUnit(getPositionX(),getPositionY()-40,
+            targets.add(Unit.getUnit(getPositionX(),getPositionY()-1,
                     getPlayer()));
         }
-        if(Unit.isThereUnitInThisPosition(getPositionX(),getPositionY()+40,
+        if(Unit.isThereUnitInThisPosition(getPositionX(),getPositionY()+1,
                 getPlayer())){
-            targets.add(Unit.getUnit(getPositionX(),getPositionY()+40,
+            targets.add(Unit.getUnit(getPositionX(),getPositionY()+1,
                     getPlayer()));
         }
-        if(Unit.isThereUnitInThisPosition(getPositionX()-40,getPositionY(),
+        if(Unit.isThereUnitInThisPosition(getPositionX()-1,getPositionY(),
                 getPlayer())){
-            targets.add(Unit.getUnit(getPositionX()-40,getPositionY(),
+            targets.add(Unit.getUnit(getPositionX()-1,getPositionY(),
                     getPlayer()));
         }
-        if(Unit.isThereUnitInThisPosition(getPositionX()+40,getPositionY(),
+        if(Unit.isThereUnitInThisPosition(getPositionX()+1,getPositionY(),
                 getPlayer())){
-            targets.add(Unit.getUnit(getPositionX()+40,getPositionY(),
+            targets.add(Unit.getUnit(getPositionX()+1,getPositionY(),
                     getPlayer()));
         }
 

@@ -15,9 +15,15 @@ public class GameCycle implements Runnable {
         }
 
         while (true) {
-            //Tower.handleAttack();
+            Tower.handleAttack();
             //Soldier.handle(Soldier::attack);
-            Soldier.handle(soldier -> soldier.move(soldier.getSpeed()));
+            Soldier.handleMove();
+            for(Soldier soldier : Soldier.getRemovableList()){
+                Player.removeUnit(soldier);
+            }
+            Soldier.getRemovableList().clear();
+            Soldier.handleAttack();
+
             Player.handleMana();
             try {
                 Thread.sleep(500);

@@ -17,7 +17,7 @@ public class Map {
     private static String[] processMap() {
         String[] gameMap = new String[22];
         try {
-            File myObj = new File("ir/ac/kntu/assets/DefaultMap");
+            File myObj = new File("C:\\Users\\Moein\\Desktop\\LastProject\\src\\ir\\ac\\kntu\\assets\\DefaultMap");
             Scanner myReader = new Scanner(myObj);
             int i = 0;
             while (myReader.hasNextLine()) {
@@ -40,12 +40,6 @@ public class Map {
             for (int j = 0; j < 22; j++) {
                 mainMap[i][j] = map[i].charAt(j);
             }
-        }
-        for (int i = 0; i < 22; i++) {
-            for (int j = 0; j < 22; j++) {
-                System.out.print( i + " " + j + " " + mainMap[i][j]);
-            }
-            System.out.println();
         }
         return mainMap;
     }

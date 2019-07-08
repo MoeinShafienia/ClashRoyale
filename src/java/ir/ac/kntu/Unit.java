@@ -97,10 +97,10 @@ public abstract class Unit {
 
     public abstract void attack();
 
-    public static Unit getUnit(int x, int y, Player player) {
+    public static Soldier getUnit(int x, int y, Player player) {
         for (Player player1 : Player.getPlayers()) {
             if (!player1.equals(player)) {
-                for (Unit unit : player.getUnits()) {
+                for (Soldier unit : player1.getSoldiers()) {
                     if (unit.getPositionX() == x && unit.getPositionY() == y) {
                         return unit;
                     }
@@ -115,7 +115,7 @@ public abstract class Unit {
                                                      Player player) {
         for (Player player1 : Player.getPlayers()) {
             if (!player1.equals(player)) {
-                for (Unit unit : player.getUnits()) {
+                for (Soldier unit : player1.getSoldiers()) {
                     if (unit.getPositionX() == x && unit.getPositionY() == y) {
                         return true;
                     }
@@ -127,10 +127,13 @@ public abstract class Unit {
 
     public void reduceHealth(int damage) {
         setHealth(getHealth() - damage);
-        /*if (getHealth() <= 0) {
+        if (getHealth() <= 0) {
             Player.removeUnit(this);
-            GamePlayMenu.remove(this);
-        }*/
+            GamePlayMenu.update();
+        }
     }
 
+    public void decreaseMana() {
+        this.getPlayer().reduceMana(getRequiredMana());
+    }
 }

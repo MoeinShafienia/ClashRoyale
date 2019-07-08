@@ -32,6 +32,7 @@ public class Player implements Serializable {
     }
 
     public void setTowers(List<Tower> towers) {
+        towers.forEach(tower -> tower.setPlayer(this));
         this.towers = towers;
         units.addAll(towers);
     }
@@ -107,6 +108,12 @@ public class Player implements Serializable {
 
     public static void removeUnit(Unit unit) {
         unit.getPlayer().getUnits().remove(unit);
+        if(unit instanceof Soldier){
+            unit.getPlayer().getSoldiers().remove(unit);
+        }else if(unit instanceof Tower) {
+            unit.getPlayer().getTowers().remove(unit);
+        }
+        GamePlayMenu.update();
     }
 
     public static void increaseMana() {
@@ -117,17 +124,25 @@ public class Player implements Serializable {
 
 
     public void spawn(Unit unit) {
-        if (unit instanceof Soldier) {
-            Soldier soldier = (Soldier) unit;
-            soldier.setPlayer(this);
-            soldiers.add(soldier);
-            units.add(soldier);
-            chooseSpawnLocation(soldier, this);
-            GamePlayMenu.spawn(soldier);
-        } else if(unit instanceof Tower) {
-            GamePlayMenu.spawn(unit);
+        if (playerHasEnoughMana(unit)) {
+            if (unit instanceof Soldier) {
+                Soldier soldier = (Soldier) unit;
+                soldier.setPlayer(this);
+                soldiers.add(soldier);
+                units.add(soldier);
+                chooseSpawnLocation(soldier, this);
+                GamePlayMenu.spawn(soldier);
+            } else if(unit instanceof Tower) {
+                GamePlayMenu.spawn(unit);
+            }
+            unit.decreaseMana();
         }
     }
+
+    private boolean playerHasEnoughMana(Unit unit) {
+        return getMana() - unit.getRequiredMana() >= 0;
+    }
+
 
     private void chooseSpawnLocation(Soldier soldier, Player player) {
         List<Position> spawnLocation = new ArrayList<>();
@@ -158,4 +173,10 @@ public class Player implements Serializable {
 
     }
 
+    public void decreaseMana() {
+    }
+
+    public void reduceMana(int requiredMana) {
+        setMana(getMana() - requiredMana);
+    }
 }

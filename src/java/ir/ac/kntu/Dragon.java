@@ -14,4 +14,5 @@ public class Dragon extends Ranged {
     public Dragon newObject(){
         return new Dragon();
     }
+
 }

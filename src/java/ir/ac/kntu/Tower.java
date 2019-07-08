@@ -20,6 +20,33 @@ public class Tower extends Unit {
         }
     }
 
+    public static boolean isThereTowerInThisPosition(int x, int y,
+                                                     Player player) {
+        for (Player player1 : Player.getPlayers()) {
+            if (!player1.equals(player)) {
+                for (Tower unit : player1.getTowers()) {
+                    if (unit.getPositionX() == x && unit.getPositionY() == y) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static Unit getTower(int i, int j, Player player) {
+        for (Player player1 : Player.getPlayers()) {
+            if (!player1.equals(player)) {
+                for (Tower unit : player1.getTowers()) {
+                    if (unit.getPositionX() == i && unit.getPositionY() == j) {
+                        return unit;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
 
     public int getHealth() {
         return health;
@@ -67,14 +94,13 @@ public class Tower extends Unit {
     @Override
     public void attack(){
         List<Unit> targets = new ArrayList<>();
-        for(int i = positionX - 40*range ; i < positionX + 40*range ; i+=40){
-            for(int j = positionY - 40*range ; j < positionY +40* range ; j+=40){
+        for(int i = positionX - range ; i < positionX + range ; i++){
+            for(int j = positionY - range ; j < positionY + range ; j++){
                 if(Unit.isThereUnitInThisPosition(i,j,player)){
                     targets.add(Soldier.getUnit(i,j,this.player));
                 }
             }
         }
-        targets = targets.stream().filter(unit -> unit instanceof Soldier).collect(Collectors.toList());
         if(targets.size() != 0) {
             int randomNumber = RandomHelper.nextInt(targets.size());
             targets.get(randomNumber).reduceHealth(this.damage);
