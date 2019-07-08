@@ -115,12 +115,17 @@ public class Player implements Serializable {
     }
 
 
-    public void spawn(Soldier soldier) {
-        soldier.setPlayer(this);
-        soldiers.add(soldier);
-        units.add(soldier);
-        chooseSpawnLocation(soldier, this);
-        GamePlayMenu.spawn(soldier);
+    public void spawn(Unit unit) {
+        if (unit instanceof Soldier) {
+            Soldier soldier = (Soldier) unit;
+            soldier.setPlayer(this);
+            soldiers.add(soldier);
+            units.add(soldier);
+            chooseSpawnLocation(soldier, this);
+            GamePlayMenu.spawn(soldier);
+        } else if(unit instanceof Tower) {
+            GamePlayMenu.spawn(unit);
+        }
     }
 
     private void chooseSpawnLocation(Soldier soldier, Player player) {

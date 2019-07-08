@@ -40,7 +40,7 @@ public class TowerPickMenu {
     public void drawMap(Pane pane,char[][] map){
         for (int i = 0; i < 800; i += 40) {
             for (int j = 0; j < 800; j += 40) {
-                Rectangle rectangle = new Rectangle(j, i, 40, 40);
+                Rectangle rectangle = new Rectangle(i, j, 40, 40);
                 Map.setColor(rectangle, map, i, j);
                 rectangle.setStroke(Color.BLACK);
                 EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
@@ -64,6 +64,7 @@ public class TowerPickMenu {
                         }
                     }
                 };
+                rectangle.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
                 pane.getChildren().add(rectangle);
             }
         }
@@ -88,9 +89,10 @@ public class TowerPickMenu {
     public void buttonHandler(Stage stage, Scene targetScene) {
         nextButton.setOnAction(e -> {
             if(player == 1){
-                Player.getPlayers().get(0).setTowers(towers);
+                Player.getPlayer(1).setTowers(towers);
+                System.out.println("towers set" + towers.size() + " size");
             }else{
-                Player.getPlayers().get(1).setTowers(towers);
+                Player.getPlayer(2).setTowers(towers);
             }
             stage.setScene(targetScene);
         });

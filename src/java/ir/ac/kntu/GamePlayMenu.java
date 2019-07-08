@@ -129,16 +129,16 @@ public class GamePlayMenu {
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
             } else if (key.getCode() == KeyCode.H) {
                 System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0).newObject());
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.J) {
                 System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1).newObject());
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.K) {
                 System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2).newObject());
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.L) {
                 System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
-                Player.getPlayer(2).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
+                Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(3).newObject());
             }
         });
     }
@@ -161,7 +161,7 @@ public class GamePlayMenu {
         });
     }
 
-    public static void update(int x, int y, Unit unit) {
+    public static void update() {
         System.out.println("updating graphic");
         Rectangle rectangle = new Rectangle(x*40, y*40, 40, 40);
         rectangle.setFill(Color.YELLOW);
