@@ -28,6 +28,7 @@ public class Player implements Serializable {
     public static void handleMana() {
         players.get(0).setMana(players.get(0).getMana() + 2);
         players.get(1).setMana(players.get(1).getMana() + 2);
+        GamePlayMenu.updateMana();
     }
 
     public void setTowers(List<Tower> towers) {
