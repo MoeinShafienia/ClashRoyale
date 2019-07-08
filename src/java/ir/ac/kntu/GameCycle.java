@@ -1,10 +1,11 @@
 package ir.ac.kntu;
 
 import javafx.application.Platform;
+import javafx.stage.Stage;
 
 public class GameCycle implements Runnable {
     @Override
-    public void run() {
+    public void run(){
 
         System.out.println("spawning towers");
         for(Player player : Player.getPlayers()){
@@ -31,7 +32,11 @@ public class GameCycle implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
-        System.out.println("game over");
+        Platform.runLater(() ->{
+            Main.getStage().setScene(new GameOverMenu().createScene(Player.getPlayer(1)));
+        });
+
     }
 }

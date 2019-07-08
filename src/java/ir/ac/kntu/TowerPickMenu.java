@@ -111,7 +111,7 @@ public class TowerPickMenu {
         });
     }
 
-    private void handleGameOver(Stage stage) {
+    public void handleGameOver(Stage stage) {
         for(Player player : Player.getPlayers()) {
             if(player.getHealth() <= 0) {
                 stage.setScene(new GameOverMenu().createScene(player));

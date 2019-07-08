@@ -5,9 +5,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
         Player player1 = new Player();
         player1.setHealth(3);
         player1.setMana(100);
@@ -60,6 +62,10 @@ public class Main extends Application {
        
 
         primaryStage.show();
+    }
+
+    public static Stage getStage(){
+        return stage;
     }
 
 
