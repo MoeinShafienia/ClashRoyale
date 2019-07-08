@@ -157,7 +157,6 @@ public class Player implements Serializable {
 
         for (int j = 1; j <= 20; j++) {
             if (map[X][j] == 'r') {
-                System.out.println("spawn location found" + X + " " + j);
                 //if(!Unit.isThereUnitInThisPosition(i*40,J*40,this)) {
                     spawnLocation.add(new Position(X, j));
                 //}

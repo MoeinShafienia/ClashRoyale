@@ -106,17 +106,11 @@ public class MainMenu {
         buttons.get(0).setOnAction(e -> {
             stage.setScene(scene);
         });
-        buttons.get(1).setOnAction(e -> {
-            stage.setScene(new ServerMenu().createScene());
+        buttons.get(4).setOnAction(e -> {
+            Platform.exit();
         });
         buttons.get(2).setOnAction(e -> {
             stage.setScene(new LoadMenu().createScene(stage));
-        });
-        buttons.get(3).setOnAction(e -> {
-            new CreateMap().createScene(stage); 
-        });
-        buttons.get(4).setOnAction(e -> {
-            Platform.exit();
         });
 
     }

@@ -133,28 +133,20 @@ public class GamePlayMenu {
     public void handleKeyPressed(Scene scene) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
             if(key.getCode() == KeyCode.A) {
-                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.S) {
-                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.D) {
-                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.F) {
-                System.out.println("spawning notice " + Player.getPlayer(1).getSelectedSoldiers().get(0));
                 Player.getPlayer(1).spawn(Player.getPlayer(1).getSelectedSoldiers().get(3).newObject());
             } else if (key.getCode() == KeyCode.H) {
-                System.out.println("spawning notice " + Player.getPlayer(2).getSelectedSoldiers().get(0));
                 Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(0).newObject());
             } else if (key.getCode() == KeyCode.J) {
-                System.out.println("spawning notice " + Player.getPlayer(2).getSelectedSoldiers().get(0));
                 Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(1).newObject());
             } else if (key.getCode() == KeyCode.K) {
-                System.out.println("spawning notice " + Player.getPlayer(2).getSelectedSoldiers().get(0));
                 Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(2).newObject());
             } else if (key.getCode() == KeyCode.L) {
-                System.out.println("spawning notice " + Player.getPlayer(2).getSelectedSoldiers().get(0));
                 Player.getPlayer(2).spawn(Player.getPlayer(2).getSelectedSoldiers().get(3).newObject());
             }
         });
@@ -169,7 +161,6 @@ public class GamePlayMenu {
     }
 
     public static void spawn(Unit unit) {
-        System.out.println("spawning graphic");
         ImageView image = new ImageView(new Image(unit.getUnitImageURL()));
         image.setTranslateX(unit.getPositionX() * 40);
         image.setTranslateY(unit.getPositionY() * 40);
@@ -179,7 +170,6 @@ public class GamePlayMenu {
     }
 
     public static void update() {
-        System.out.println("updating graphic");
         Platform.runLater(() -> {
             pane.getChildren().clear();
             pane = Map.drawMap(Map.getMap());
@@ -190,7 +180,6 @@ public class GamePlayMenu {
         }
         for(Tower tower : Player.getPlayer(1).getTowers()) {
             spawn(tower);
-            System.out.println("Tower is spawned");
         }
         for(Soldier soldier : Player.getPlayer(2).getSoldiers()) {
             spawn(soldier);
