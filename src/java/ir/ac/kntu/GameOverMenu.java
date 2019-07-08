@@ -14,6 +14,7 @@ public class GameOverMenu {
     public GameOverMenu() {
         root = new VBox(20);
         root.setAlignment(Pos.CENTER);
+        root.getStyleClass().add("card-picker-image");
     }
 
     public Scene createScene(Player player) {
@@ -22,6 +23,7 @@ public class GameOverMenu {
         text.setText(player.getName() + " Won!");
         root.getChildren().add(text);
         Scene scene = new Scene(root,Constants.WIDTH,Constants.HEIGHT);
+        scene.getStylesheets().add("ir/ac/kntu/assets/Viper.css");
         return scene;
     }
 }
