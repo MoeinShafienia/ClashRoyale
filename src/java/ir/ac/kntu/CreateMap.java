@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CreateMap extends Application {
 
-    private void createScene(Stage stage) {
+    public void createScene(Stage stage) {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1000, 800);
         char[][] map = new char[20][20];
