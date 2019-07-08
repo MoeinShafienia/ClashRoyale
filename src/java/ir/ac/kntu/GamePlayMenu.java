@@ -20,7 +20,7 @@ import javafx.scene.shape.Rectangle;
 
 public class GamePlayMenu {
     private static Scene scene;
-    private BorderPane root;
+    private static BorderPane root;
     private static Pane pane;
     private VBox topChart,bottomChart;
     private HBox topUnits,bottomUnits,topKeys,bottomKeys;
@@ -65,7 +65,7 @@ public class GamePlayMenu {
         addManaBar(topChart,2);
         root.setRight(topChart);
 
-        scene = new Scene(root,Constants.WIDTH + 500,Constants.HEIGHT);
+        scene = new Scene(root,Constants.WIDTH + 500,Constants.HEIGHT+80);
         handleKeyPressed(scene);
         return scene;
     }
@@ -180,13 +180,17 @@ public class GamePlayMenu {
 
     public static void update() {
         System.out.println("updating graphic");
-        Rectangle rectangle = new Rectangle(x*40, y*40, 40, 40);
-        rectangle.setFill(Color.YELLOW);
-        rectangle.setStroke(Color.BLACK);
         Platform.runLater(() -> {
-            pane.getChildren().add(rectangle);
+            pane.getChildren().clear();
+            pane = Map.drawMap(Map.getMap());
+            root.setCenter(pane);
         });
-        spawn(unit);
+        for(Soldier soldier : Player.getPlayer(1).getSoldiers()) {
+            spawn(soldier);
+        }
+        for(Soldier soldier : Player.getPlayer(2).getSoldiers()) {
+            spawn(soldier);
+        }
     }
 
     public static void remove(Unit unit) {
